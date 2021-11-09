@@ -1,0 +1,113 @@
+% ----------------------------------------------------
+% Introduction
+% ----------------------------------------------------
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+% ----------------------------------------------------
+\chapter{Introduction \label{ch:intro}}
+\epigraph{“Made weak by time and fate, but strong in will\\
+To strive, to seek, to find, and not to yield.”}
+    {\emph{---Ulysses, Alfred Lord Tennyson}}
+\vspace{0.5cm}
+% ----------------------------------------------------
+
+% ----------------------------------------------------
+% Introduction
+% ----------------------------------------------------
+The following report describes an investigation undertaken to prove that with the use of a \gls{sdr}, two antenna and \gls{dsp}, an estimated \gls{AoA} can be calculated using the \gls{pd} \footnote{The acronym Phase Difference (PD) will be used for this report due to the shear number of occurrences.} between the two \gls{rx} antenna. Research into the surrounding algorithms, history and applications for such a \gls{df} system are discussed, and a series of validation tests are conducted to prove the effectiveness of such a system.  
+
+This introductory chapter provides a general outline of the background surrounding the project, as well as stating the objectives, requirements and scope for the project. 
+
+% ----------------------------------------------------
+% Background
+% ----------------------------------------------------
+\section{Background}
+
+We, as humans, are able to perform audio \gls{df} with remarkable precision. \gls{rdf}\footnote{\gls{rdf} is the measurement of the direction from which a received signal is transmitted \cite{rdf-advantage-of-sdr}} is nearly as old as the radio itself. The earliest experiments were carried out by Heinrich Hertz \cite{hertz-expeirments} for much the same reasons humans perform \gls{df}: for use in spatial awareness and possible threat detection. 
+
+\gls{rf} and \gls{df} are used in several applications from military, search and rescue, radio monitoring and science. In particular interest to this thesis is that used in science for the location and tracking of animals, known as wildlife telemetry. 
+
+The simplest form of a \gls{rdf} system merely consists of a single receiver and an antenna (specifically a directive antenna). The receiver is used to indicate the received signal strength, while the antenna is swept to point in different directions. In such a system, only the magnitude of the received signal is used to determine the direction from which the signal is transmitted.
+
+Scientists commonly use this simple method for wildlife telemetry, using a handheld \gls{rdf} device as the receiver. However, this labour-intensive method's accuracy is highly dependent on the width of the antenna's radiation pattern. A wide beam pattern decreases the accuracy, a narrow beam improves accuracy but additional time must be spent scanning all possible directions. Importantly, too narrow a beam and the risk of missing intermittent transmissions arises \cite{telem-issues}. 
+
+While \gls{sdr} itself is not a new technology, with origins tracing back to the 1970s, it has seen an increase in popularity in recent years. The main purpose of a \gls{sdr} receiver is to transform the analogue \gls{rf} signals into digital samples that can be processed by a host computer. In doing so, a \gls{sdr} system must perform several complex tasks simultaneously to deliver seamless reception and transmission of \gls{rf} data.
+
+With modern technological advancements in computing power, \gls{dsp}, \gls{rf}, \gls{ai} and electronic hardware components, \gls{sdr} has evolved into a highly intelligent, albeit complex, and high-performance modern communication system. \cite{sdr-for-engineers}
+
+Additionally, Radio communication devices are used every day by millions of individuals, from the chips in \gls{tv} remotes, to mobile phones and speciality devices. The project aims to understand, and subsequently harness current \gls{sdr} technologies by using the platform to perform \gls{df}.
+
+% ----------------------------------------------------
+% Objectives
+% ----------------------------------------------------
+\section{Aim of the Project}
+
+
+\subsection{Objectives}
+The fundamental objective of this project was to prove that through \gls{pd} calculations on a \gls{sdr} a \gls{df} system can be built. To do this, a prototype direction finding system was built, using a \gls{sdr} receiver. The system would use the \gls{pd} from two separate antennas, spaced sufficiently apart, to be able to detect a time-delayed phase shift in the received signals on each antenna. Note, however, that the goal is to simply prove that this technique is possible through the use of \gls{sdr}, and not to build a \emph{fully functioning} \gls{df} system.
+
+This system was to be validated through testing, and prove that from the change in phase received at each antenna connected to a \gls{sdr}, the \gls{AoA} can be calculated. The entire project is well documented within this report and provides a basis for future development.
+
+The broader objective of the project is for the ultimate use of the developed \gls{df} system to improve current wildlife telemetry methods. 
+
+% ----------------------------------------------------
+% Sys Requirements
+% ----------------------------------------------------
+\subsection{System Requirements}
+Based off the objectives for this project, the general requirements were developed. Therefore the prototype \gls{df} system is required to:
+
+{
+    \setstretch{0.8}
+    \begin{itemize}
+        \item{Connect, initialise and control a \gls{sdr} device}
+    	\item{Receive synchronised data from two separate antennae}
+    	\item{Store this data on the host computer for analysis}
+    	\item{Determine the phase of the signal received from each antenna}
+    	\item{Calculate an estimated \gls{AoA} within a 180-degree range}
+    	\item{Prove that by the movement of the transmission source, the phase received will change}
+    \end{itemize}
+}
+
+% ----------------------------------------------------
+% Thesis Contributions
+% ----------------------------------------------------
+
+
+% ----------------------------------------------------
+% Terms of Reference
+% ----------------------------------------------------
+
+
+%---------------------------------
+% Scope and Limitations
+%---------------------------------
+\section{Scope \& Limitations}
+Due to the considerable time pressure faced during this project, the scope has been kept intentionally narrow. For context, with a time-frame of approximately fourteen weeks from creation to submission, the ongoing global COVID-19 pandemic, shifted exam periods and country-wide rioting, there have been many barriers withholding the project.
+
+Nevertheless, formally, the project is centred around the design, implementation and testing of a prototype \gls{df} system, for ultimate use in wildlife telemetry applications. Feasibility into the application are discussed, a system is prototyped and \gls{pd} calculations are tested. The rudimentary \gls{AoA} for both \gls{fm} radio stations and signals around the 150MHz band are calculated and analysed. Furthermore, a great deal of time is spent discussing the design considerations and motivations in Chapters~\ref{ch:meth}. Where possible, and for the sake of brevity, only the fundamental \gls{dsp} concepts and theories are explained, however for those not explained, links are provided to reference material. 
+
+The design of the system is well documented, with a detailed explanation of hardware selection and software usage. Code snippets, block diagrams and flow graphs are provided where necessary. 
+
+A comprehensive set of validation tests were performed to show the change in phase measured, with the movement of either the antenna array or the transmission source. This included the development of a simulation and testing on noise-free data for reference. These tests convincingly demonstrated a working base for further development towards a fully-fledged animal tracking system.
+
+With regards to limitations, there were several. Firstly, since during the course of this project no real-world \gls{df} system was intended to be created, all transmission signals used for testing were constant pure $sin$ waves of ample power. Secondly, the phase detection algorithm was not \emph{optimised}, the efficiency and execution times of the signal capturing were not considered at all. Thirdly, the \gls{AoA} was limited to 180-degrees, ignoring the ambiguity of possible angles. Finally, interfacing with the LimeSDR board was limited, using only the necessary API functions for the use case. 
+
+
+% ----------------------------------------------------
+% Report Outline
+% ----------------------------------------------------
+\section{Report Outline}
+The remainder of this thesis is organized as follows:
+
+This report begins with a broad overview of the literature surrounding radio waves and \gls{df}, in Chapter \ref{ch:literature}. Following this, a detailed look in the methodology used for this project is presented in Chapter \ref{ch:meth}. This includes a detailed look into signal theory, \gls{dsp}, phase extraction and the hardware components for the project. Thereafter, with the plan set, Chapter \ref{ch:design} provides a detailed exhibition of the project, from a simulation to the system-level design and hardware. Diagrams and code snippets are included where necessary. Chapter \ref{ch:results} outlines the results from the validation tests of the project, and a statistical analysis of said results. Chapter \ref{ch:application} is a brief break away from the project, to provide an illustration of the intended application for such a system. In Chapters \ref{ch:conclusions}, and \ref{ch:fw}, conclusions are drawn from the results, the project summarised, and future work recommendations are made. All the miscellaneous information for this project can be found in the Appendices \ref{Appendix-A}, \ref{Appendix-B}
+
+
+% ----------------------------------------------------
+\ifstandalone
+\bibliography{Bibliography/References}
+\printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}
+% ----------------------------------------------------

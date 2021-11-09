@@ -1,0 +1,48 @@
+\documentclass[11pt]{report}
+\input{Style/ChapterStyle.tex}
+\usepackage{standalone} % Best loaded last in the preamble
+
+\input{FrontMatter/Glossary.tex}
+
+\begin{document}
+
+\pagenumbering{roman}
+\input{FrontMatter/Title.tex}
+\input{FrontMatter/Declaration.tex}
+\input{FrontMatter/Acknowledgements.tex}
+\input{FrontMatter/Abstract.tex}
+\glsresetall
+
+\tableofcontents
+\listoffigures
+%\listoftables
+
+\printnoidxglossary[type=\acronymtype,nonumberlist,title={Abbreviations}]
+\newpage
+
+\pagenumbering{arabic}
+
+\input{Chapters/Introduction.tex}
+\input{Chapters/Literature.tex}
+\input{Chapters/Methodology}
+\input{Chapters/Implementation}
+\input{Chapters/Results}
+\input{Chapters/WildLifeTelem}
+\input{Chapters/Conclusions.tex}
+\input{Chapters/FutureWork}
+
+\newpage
+\bibliography{Bibliography/References}
+
+\appendix
+\input{Appendices/Repositories.tex}
+
+\input{Appendices/LimeSDR.tex}
+
+\chapter{Ethics Form}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.77\linewidth]{Appendices/ethics-from-signed.pdf}
+\end{figure}
+
+\end{document}

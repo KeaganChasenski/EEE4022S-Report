@@ -1,0 +1,134 @@
+% ----------------------------------------------------
+% Integration to Wild-Life 
+% ----------------------------------------------------
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+% ----------------------------------------------------
+\chapter{Wildlife telemetry application and integration \label{ch:application}}
+\epigraph{``Where the waters do agree, it is quite wonderful the relief they give.''}%
+    {\emph{---Jane Austen, Emma}}
+\vspace{0.5cm}
+% ----------------------------------------------------
+
+%---------------------------------
+% Overview
+%---------------------------------
+\section{Overview}
+The aim of this brief chapter is to take a step back from the project, and provide an illustrative idea of how the system developed would be integrated into a \emph{fully fledged} \gls{df} system. This project focused on the validation that through Phase Interferometry, and thus \gls{pd}, \gls{df} is possible on a \gls{sdr} device. This chapter provides the broader motivation for the project, which the limited scope, unfortunately, did not allow for. While a working \gls{df} prototype was developed, the system was not optimised fully to allow for such an integration. The work done is this chapter is purely for the benefit of the reader, to illustrate an integration of this project.
+
+
+%---------------------------------
+% System Descritpion
+%---------------------------------
+\section{System Description}
+The following is a system description for typical use in wildlife telemetry, within the context of African animals and the available products.
+
+
+A list of considerations for the \gls{sdr} based of parameters from the collar as a transmitter:
+
+
+\begin{minipage}[t]{.5\linewidth}\centering
+\begin{center}
+    \begin{tabular}{c}
+        \textbf{Requirements} \\
+        \hline
+        Center frequency = 150MHz \\
+        Pulse rate = 1100MS \\
+        Pulse width = 20MS \\
+        Calibration tolerance = $\pm$2.5kHz \\
+        Sampling frequency = 20MSps \\
+        Sampling window = 1200MS \\
+        Battery life - up to three years \\
+    \end{tabular}
+\end{center}
+\end{minipage}%
+\hspace{0.5cm}
+\begin{minipage}[t]{.5\linewidth}\centering
+\begin{center}
+    \begin{tabular}{c}
+        \textbf{Base Station}  \\
+        \hline
+        Minimum three antenna \\
+        Battery backup \\
+        Local web-serve on host Pi \\
+        Weather proof \\
+        touchscreen interface \\
+        Low powered mode \\
+        Real-time clock \\
+    \end{tabular}
+\end{center}
+\end{minipage}
+
+%---------------------------------
+% System Triangulation
+%---------------------------------
+\section{Triangulation}
+It has already been discussed that using at least three antenna in the array resolves ambiguities of angles and thus the \gls{df} system is capable of producing a 360-degree bearing \gls{AoA}.
+
+In order to calculate the exact bearing angle from a base station, the same methodology used in this report can be used with some further extension. The calculated \gls{AoA} produced in this report represents a symmetrical angle pair, \emph{in other words} it is not known whether this incident \gls{AoA} is coming from in front of or behind the device. However, if two antennae are used to produce a pair of \gls{AoA} and then within the same antenna array any other combination of two antennae separately produces another two \gls{AoA} possibilities, there will be a common \gls{AoA} between the four \gls{AoA} results. This is then the resolved, true \gls{AoA} in a 360-degree bearing. 
+
+If a system is implemented in which two separated \gls{df} system base stations are producing 360-degree bearing angles and the line produced by the produced \gls{AoA} is plotted, then the intersection of the two lines is calculated, then triangulation is possible. The result is then the exact coordinates of a collar if overlaid onto a map of the farm per say as represented in Figure \ref{fig:wildlife-trian-a}
+
+\begin{figure}[h]\centering
+    \subfloat[DF Triangulation possible with two base stations, each consisting with 3 antenna]{\label{fig:wildlife-trian-a}\includegraphics[width=.4\linewidth]{Images/diagrams/wildlife-triangulation.png}}\hspace{0.5cm}
+    \subfloat[Calculation of gradient of a line via inclination angle]{\label{fig:wildlife-trian-b}\includegraphics[width=.4\linewidth]{Images/diagrams/Wildlife-gradient.png}}\hfill 
+    \caption{Multiple base station geometry used to triangulate a signal source using phase interferometery}
+    \label{fig:wildlife-trian}
+\end{figure}
+
+
+From the angle calculated via phase interferometry of each base station $\theta1$ and $\theta2$, the gradient of the euclidean line that this angle produces can be deduced as shown in Figure \ref{fig:wildlife-trian-b}. Mathematically speaking:
+
+\begin{equation*}
+\begin{split}
+    m = \frac{\Delta y}{\Delta x} \\
+    \tan \theta = \frac{\Delta y}{\Delta x} \\
+    \therefore m = \tan(90 - \theta) 
+\end{split}
+\end{equation*}
+
+\newpage
+And a briefly, using the equation of two lines: $L_1$ and $L_2$, the point of intersection $(h,k)$ can be calculated:
+\begin{equation*}
+    \begin{split}
+        L_1 : y-y_1 = m_1 (x-x_1) \\
+        L_2 : y-y_2 = m_2 (x-x_2) \\
+    \end{split}
+\end{equation*}
+Where $(x_1,y_1)$ and $(x_2,y_2)$ are the know coordinates of the base station, from which the inclination line originates. 
+
+To find $x$ intersection of $L_1$ and $L_2$ lines at $h$, setting $L_1 = L_2$:
+\begin{equation*}
+    \begin{split}
+        m_1(h-x_1) + y_1 = m_2(h-x_2) + y_2 \\
+        \therefore h = \frac{(m_2 x_2 - m_1 x_1) - (y_2 - y_1)}{m_2 - m_2}
+    \end{split}
+\end{equation*}
+
+*Note, $k$ can now be found by substituting into $h = x$ into $L_1$ equation. 
+
+
+%---------------------------------
+% System Descritpion
+%---------------------------------
+\section{System Display}
+An example of the system display used to interface with the two base-station \gls{sdr}.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Images/diagrams/WLT Display.drawio.png}
+    \caption{Illustration of Wildlife telemetry application display}
+    \label{fig:application-display}
+\end{figure}
+
+
+This brief chapter aimed to provide a general overview on how a \gls{df} system using this project may be extended for use in a wildlife telemetry application. Additionally, some of the future considerations needed for this extension were mentioned.  This will be built on further in Chapter~\ref{ch:fw}. This however clearly shows the scope for further development and the envisioned real-world application. 
+
+% ----------------------------------------------------
+\ifstandalone
+%\bibliography{Bibliography/References.bib}
+\printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}
+is% ----------------------------------------------------

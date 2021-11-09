@@ -1,0 +1,32 @@
+% ----------------------------------------------------
+% Proofs
+% ----------------------------------------------------
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+% ----------------------------------------------------
+\chapter{LimeSDR \label{Appendix-B} \vspace{0cm}}
+% ----------------------------------------------------
+\begin{itemize}[noitemsep,nolistsep]
+    \item \textbf{LimeSDR USB \href{https://github.com/myriadrf/LimeSDR-USB/blob/master/hardware/plug/1v4/Project\%20Outputs\%20for\%20LimeSDR-USB_1v4_LMS031pad/LimeSDR-USB_1v4_schematic_r7.PDF}{Board Schematics}}
+    \item \textbf{RF \href{https://github.com/myriadrf/LMS7002M-docs}{Transceiver}: LMS7002M  \href{https://github.com/myriadrf/LMS7002M-docs}{Data sheet}} 
+    \item \textbf{Cypress FX3 USB 3.0 controller \href{https://github.com/myriadrf/LimeSDR-USB_FX3}{Documentation}} 
+    \item \textbf{Host software: \href{https://github.com/MyriadRF/LimeSuite}{driver and GUI sources}}
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.77\textwidth]{Images/diagrams/limesdrblock.png}
+    \caption{LimeSDR Functional Block diagram}
+    \label{fig:my_label}
+\end{figure}
+
+
+
+% ----------------------------------------------------
+\ifstandalone
+% \bibliography{Bibliography/References.bib}
+%\printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}
+% ----------------------------------------------------

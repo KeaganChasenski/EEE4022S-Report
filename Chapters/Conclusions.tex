@@ -1,0 +1,36 @@
+% ----------------------------------------------------
+% Conclusions
+% ----------------------------------------------------
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+% ----------------------------------------------------
+\chapter{Conclusions \label{ch:conclusions}}
+\epigraph{``Now this is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning.''}%
+    {\emph{--- Winston Churchill}}
+\vspace{0.5cm}
+% ----------------------------------------------------
+The purpose of this project, culminating in this report, was the design and implementation of a \gls{df} system, that using phase interferometry and a \gls{sdr}, was able to measure a change in phase at \gls{rx} antenna, and thus produce an estimated \gls{AoA}. With the increase of consumer \gls{sdr}s and \gls{dsp} power, the field of \gls{rdf} continues to grow. Additionally, the need and use for \gls{rdf} in wildlife telemetry has garnered scientific research, and the amalgamation of these two facts leads to the exciting development this project represents. With \gls{rdf} systems that are able to provide accurate, real-time triangulation of collared animals, the fight to track and protect our wildlife gets easier. 
+
+The report began with a broad overview of the surrounding, yet relevant, literature in Chapter~\ref{ch:literature}. The aim of this review was not about finding similar projects, nor assistance, but rather to discuss the space into which this project falls. By following a funnel-like approach, starting with Traditional Radio, leading into \gls{sdr} and finally \gls{df}, the necessary theoretical backdrop was provided. In the analysis of literature, the potential value of, and gap for this project was found. It was clear that there is a distinct lack of research into the use of \gls{sdr}, in combination with Phase Interferometry, within wildlife telemetry. 
+
+Following the literature review was Chapter~\ref{ch:meth}. This chapter dug deeper yet into the theoretical knowledge needed for this project, starting with \gls{dsp} theory, followed by the hardware elements, architecture and design for the project, and ending with a review of the software required for this project. The software methodology built upon the knowledge of \gls{dsp} and \gls{sdr} garnered previously and provided the necessary structure on which the code for this project was implemented. Due to the scope of this project, and the nature of the \gls{sdr} field in which it falls, many simplifications were mentioned and made. This chapter aimed to provide only the highly relevant mathematical equations for both \gls{rdf} and \gls{dsp}, and be as graphical as possible in its approach to the design process followed in the next chapter. 
+
+The bulk of time spent on this project was in Chapter~\ref{ch:design}. This has been condensed down into only the necessary points for this report, but much development and hardship went into the design and physical implementation of the \gls{df} prototype. The LimeSDR's internal hardware was configured and \textsc{Python} code was developed for control of the \gls{sdr} and reception, storage and processing of the \gls{rf} signals in order to extract the phase of the \gls{rx} signal at each antenna. This entire process and subsequent code-base was documented. Included in the development process is the \textsc{Julia} simulation, which is used as a proof-of-concept. This chapter covers the system-level design of the \gls{df} prototype, the \gls{sdr} hardware selection and set-up process as well as the \textsc{Python} code. For this project, the majority of future work would be surrounding the code-base and optimisation of this. Nevertheless, thorough documentation of each section is included, with detailed descriptions of the workings therein. Where necessary, code snippets and diagrams were provided. 
+Ultimately this chapter aimed to provide an overview of the entire \gls{df} development process, in a level of detail which would allow the reader to then be able to implement the project themselves.
+
+Chapter~\ref{ch:results} represents an important step in the design process. This chapter validated the system that this project aimed to produce, and thus determines the success of the project. The system prototype was tested through four broad categories (Simulation, Non-averaged Phase results, Averaged Phase results and Sensitivity), each aiming to validate a separate element of the design process. For each category, the methodology behind the test was given, and followed with the results for the test. Starting with the simulation, developed to prove the fundamental working of the \gls{pd} approach, the validation of this naturally proved highly successful. The validation tests performed on the \gls{df} system with real-world \gls{rf} signals varied with success but ultimately proved that with fine-tuning the system is highly capable, and ultimately met the goals for this project. The system was successful of signal acquisition on multiple antennas, storage of sampled data, phase extraction of said sampled data, all around the 150MHz \gls{rf} band.  
+
+The final chapter, \ref{ch:application}, aimed to provide a brief illustration of how a Phase interferometry \gls{df} system implemented on a \gls{sdr}, with two base stations could provide further benefit to wildlife conservation and research. By illustrating the integration of this project (with further development) into a \emph{fully fledged} system, the aim was to provide the reader with a broader understanding of this projects motivations. As a result, no validation was performed on this chapter. It is the hope that this section, in conjunction with Chapter \ref{ch:fw} provides a platform for further development. 
+
+In summary of the project, looking back it is clear that the project achieved the requirements set out in Chapter \ref{ch:intro}. The aim was to design, prototype and implement a system that was capable of calculating the \gls{pd} between two \gls{rx} antennas, using a \gls{sdr}. The design and processing steps were documented in this report, and where functionality and/or development was omitted, it was clearly stated. The results show clearly the workings of the project, and it is the hope that this report can indeed act as a guide for further development towards a \emph{fully fledged} \gls{df} systems within wildlife telemetry. This project, therefore, is considered a success.
+
+
+% ----------------------------------------------------
+\ifstandalone
+\bibliography{Bibliography/References.bib}
+\printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}
+a% ----------------------------------------------------

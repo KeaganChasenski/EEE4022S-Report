@@ -1,0 +1,24 @@
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+
+
+% \afterpage{
+% \newgeometry{margin=30mm}
+\chapter*{Abstract}
+
+\gls{rdf}, is a variant technology of \gls{df} and commonly used as a low-cost method for tracking and navigation systems, specifically within wildlife telemetry. In combination with \gls{sdr}, one is able to produce a low cost, portable, and highly specialised system, albeit with limited design constraints dependant on the device selection. By using a Phase Interferometry approach, leveraging the \gls{pd} occurring in signals at \gls{rx} antenna, a bearing angle and thus an estimated \gls{AoA} can be produced. 
+
+For use in this project, the LimeSDR was selected due to its low-cost, synchronised 2-channel \gls{rx} ports and open-source hardware/software package. The use of multiple separate programming methods for the LimeSDR are used, namely GNU Radio,  LMS7\gls{API} provided by MyRiadRF and the pyLMS7002Soapy \gls{API}. Gnu Radio is initially used for exploration into the LimeSDR, testing of the \gls{rx} capabilities and to confirm the correct functioning of the device. The LM7200 \gls{API} provides initialisation control and setup of the \gls{fpga} registers and ports. Platform independence and further refined control over data transfer was achievable with the use of the pyLMS7002Soapy \gls{API}.
+
+This work documents the analysis of \gls{rdf}, \gls{sdr} and Phase Interferometry, for potential use in wildlife research and telemetry. The aim of this report is to document the project's steps and associated results, starting with thorough surveillance of the surrounding literature, followed by a comprehensive methodology and step-by-step design process, with consideration for the theoretical concepts that underpin an \gls{rdf} system, specifically the relevant concepts of \gls{dsp}. While there exists prior work relating to the hardware requirements of such a system, there lacks a clear description of the hardware, software \emph{and} algorithms needed for use in such a scenario. Therefore, this project is aimed at a clear and thorough report on the design procedure of the entire \gls{rdf} system chain, with a specific design towards the frequencies and technologies within wildlife telemetry. 
+
+After full validation of the results, illustrating the working of this project, this report concluded that the LimeSDR is capable for use within a \gls{rdf} system, and with further modification and development, can be used successfully in a \emph{fully-fledged} \gls{df} system for wildlife telemetry. For this, the use of the pyLMS7002Soapy \gls{API} is recommended as the base platform, in order to further fine-tune the \gls{sdr}'s performance. 
+
+
+
+\ifstandalone
+ \printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}

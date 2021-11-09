@@ -1,0 +1,66 @@
+% ----------------------------------------------------
+% Future Work
+% ----------------------------------------------------
+\documentclass[class=report,11pt,crop=false]{standalone}
+\input{../Style/ChapterStyle.tex}
+\input{../FrontMatter/Glossary.tex}
+\begin{document}
+% ----------------------------------------------------
+\chapter{Future Work Recommendations \label{ch:fw}}
+\epigraph{``Every new beginning comes from some other beginning’s end.''}%
+    {\emph{--- Seneca}}
+\vspace{0.5cm}
+% ----------------------------------------------------
+
+Due to the short nature and limited scope of this short project, there are  many interesting and important aspects of a \gls{df}, \gls{sdr} system left unexplored. It is hoped that by using the cursory work of this report as a basis for future development, this topic can be developed further. A brief discussion on future workings is provided below. 
+
+\section{DF Antennas Development}
+The scope of the project concerned \gls{dsp}, phase extraction and a touch of hardware development. Thus, very little time was spent on the construction of an optimal antenna. The following is a list of suggestions regarding antenna development:
+
+\begin{itemize}
+    \item Extension of the project to include at least three antennas.
+    \item Further investigation into optimal antenna array geometries.
+    \item Tuning of the antenna parameters to better match the resonance frequencies to 150MHz. 
+    \item A more efficient ground plane. 
+\end{itemize}
+
+\section{DF Hardware Development}
+The above mention antenna development leads to the question: how does one connect three or more antennas to a device with only two \gls{rx} channels? Future investigation into this is necessary, but could include:
+
+\begin{itemize}
+    \item High-frequency multiplexers.
+    \item Antenna switches.
+    \item An additional \gls{sdr} (expensive).
+\end{itemize}
+
+\newpage
+Additional hardware development to \gls{sdr} device includes:
+\begin{itemize}
+    \item Filtering methods as the frequency band of interest is only 2MHz wide.
+    \item Internal register optimisation of the \gls{fpga}.
+    \item Optimisation of gain settings.
+    \item Further development into the Pi as the host computer. 
+    \item Additional LED touch screen as a start. 
+\end{itemize}
+
+\section{DF Software Development}
+\begin{itemize}
+    \item Further implementation of the SoapySDR \gls{API}, removing the need for bloated GNU Radio \textsc{Python} code. 
+    \item the \gls{df} system \textsc{Python} code should be ported to a language more suited to high-speed, real-time implementation such as C++. 
+    \item the code provided in this project should be further optimised in terms of the \gls{dsp} methods used. 
+    \item Additionally the method of connecting to the \gls{sdr}, sampling, writing to a file and subsequent looping should be further optimised.
+    \item Further time-alignment methods should be considered.
+    \item Internal processing delays within the \gls{sdr} and associated software needs to be considered. 
+    \item A real-time display developed for the estimated \gls{AoA}.
+\end{itemize}
+
+
+As a final note, the above recommendations fall into the Wildlife telemetry application suggested in Chapter~\ref{ch:application}.
+
+% ----------------------------------------------------
+\ifstandalone
+\bibliography{Bibliography/References}
+\printnoidxglossary[type=\acronymtype,nonumberlist]
+\fi
+\end{document}
+% ---------------------------------------------------
